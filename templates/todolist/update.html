@@ -1,0 +1,81 @@
+{% extends 'todolist/base.html' %}
+{% block content %}
+<section class="d-flex justify-content-center">
+  <form class="row g-3 w-50 my-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-md-6">
+      <label for="validationCustom01" class="form-label">Name</label>
+      <input type="text" class="form-control" id="validationCustom01" required name="name" value="{{ data.name }}">
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom02" class="form-label">Roll No.</label>
+      <input type="text" class="form-control" id="validationCustom02" required name="roll_num" value="{{ data.roll_num }}">
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustomUsername" class="form-label">Father Name</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="validationCustomUsername" required name="father_name" value="{{ data.father_name }}">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">Mother Name</label>
+      <input type="text" class="form-control" id="validationCustom03" required name="mother_name" value="{{ data.mother_name }}">
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">Mobile No.</label>
+      <input type="text" class="form-control" id="validationCustom03" required name="phone" value="{{ data.phone }}">
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">Email</label>
+      <input type="email" class="form-control" id="validationCustom03" required name="email" value="{{ data.email }}">
+    </div>
+    <div class="col-md-12">
+      <label for="validationCustom03" class="form-label">Address</label>
+      <input type="text" class="form-control" id="validationCustom03" required name="address" value="{{ data.address }}">
+    </div>
+    <!-- gender -->
+    <div class="gender d-flex gap-2">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" {% if data.gender == "Male" %}checked{% endif %}>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" {% if data.gender == "Female" %} checked {% endif %}>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Female
+        </label>
+      </div>
+    </div>
+    <!-- end gender -->
+    <!-- image field -->
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Father Image</label>
+      {% if data.father_image %}
+        <p>Current Image: <img src="{{ data.father_image.url }}" alt="Father Image" width="100"></p>
+      {% endif %}
+      <input type="file" class="form-control" id="validationCustom03" name="father_image">
+    </div>
+    <!-- image field 2-->
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Mother Image</label>
+      {% if data.mother_image %}
+        <p>Current Image: <img src="{{ data.mother_image.url }}" alt="Mother Image" width="100"></p>
+      {% endif %}
+      <input type="file" class="form-control" id="validationCustom03" name="mother_image">
+    </div>
+    <!-- image field 3 -->
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Student Image</label>
+      {% if data.student_image %}
+        <p>Current Image: <img src="{{ data.student_image.url }}" alt="Student Image" width="100"></p>
+      {% endif %}
+      <input type="file" class="form-control" id="validationCustom03" name="student_image">
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

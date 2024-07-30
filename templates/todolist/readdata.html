@@ -1,0 +1,79 @@
+{% extends 'todolist/base.html' %}
+{% block content %}
+    <section class="d-flex justify-content-center">
+     
+        {% for res_data in res_data %}
+        <div class="card" style="width: 25rem;" id="{{res_data.id}}">
+            <img src="{{res_data.student_image.url}}" class="card-img-top w-50 m-auto mt-2" alt="student_image">
+            <div class="card-body">
+              <h5 class="card-title">{{res_data.name}}</h5>
+              <p class="card-text">{{res_data.roll_num}}</p>
+              <p class="card-text">{{res_data.email}}</p>
+              <p class="card-text">{{res_data.phone}}</p>
+
+              <div class="d-flex gap-2 justify-content-center">
+                {% url 'update_data' res_data.id  as update_data_url %}
+                <a href="{{update_data_url}}" class="btn btn-primary">Edit Data</a>
+                <div class="card" >
+                  <!-- Your card content here -->
+                  <button class="btn btn-secondary view-data-btn" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" 
+              
+                  onclick="idHandler('{{ res_data.id}}')">
+                    View Data
+                </button>
+              </div>
+                {% url "deletedata" res_data.id  as delete_url %}
+                <a href="{{delete_url}}" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <!-- pop up start here -->
+         
+          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body-content">
+                      <h2 class="name">{{popdata.name}}</h2>
+                      <p class="roll_num">{{popdata.roll_num}}</p>
+                      <p class="email">{{popdata.email}}</p>
+                      <p class="phone">{{popdata.phone}}</p>
+                      <p class="address">{{popdata.address}}</p>
+                      <p class="gender">{{popdata.gender}}</p>  
+                      <img src="{{popdata.student_image.url}}" alt="student">
+                      <img src="{{popdata.father_image.url}}" alt="father">
+                      <img src="{{popdata.mother_image.url}}" alt="mother">
+                    </div>
+                    <button class="btn btn-primary w-25 my-3 mx-2" onclick="closeUp()">Close</button>
+                </div>
+            </div>
+        </div>
+        
+      
+          <!-- pop up end here -->
+          
+    </section>
+    <script>
+      const idHandler = (task_id)=>{
+      const card = document.querySelectorAll(".card");
+      card.forEach((item)=>{
+        item.addEventListener('click',function(){
+           
+        })
+      })
+      }
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
